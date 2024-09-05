@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="p-5 mb-55 bg-primary text-white">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">            
+                <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                  
+<h1 class="text-center">Customers List Page</h1>
+<!--<img src="{% static 'assets/images/e_shop.jpg' %}" alt="e_shop iamge">-->
+<table>
+    <thead>
+        <tr>
+            <th>Customer Name</th>
+            <th>Customer Since</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for customer in all_customers %}
+            <tr>
+                <td>{{customer.customer_name}}</td>
+                <td>{{customer.customer_since}}</td>
+                <td>
+                    <a href="{% url 'customer_update' customer.id %}">
+                    <button class="btn btn-primary">Update</button>
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'customer_delete' customer.id %}">
+                    <button class="btn btn-danger">Delete</button>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<br />
+
+<div class="container">
+<a href="/order/customers/add/">
+    <button class="btn btn-success float-end m-2">+ Add Customers</button>
+</a>
+</div>
+
+
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}

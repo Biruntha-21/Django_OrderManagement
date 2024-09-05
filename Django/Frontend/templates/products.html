@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="p-5 mb-5 bg-primary text-white">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">            
+                <div class="card bg-dark text-white" style="border-radius: 1rem;">
+<h1 class="text-center">ALL PRODUCTS</h1>
+<img src="{% static 'assets/images/e_shop.jpg' %}" alt="e_shop iamge">
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Product Code</th>
+            <th>Price</th>
+            <th>GST</th>
+            <th>Food Product</th>
+            <!--<th>Picture</th>-->
+            <th>Update</th>
+            <th>Delete</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in all_products %}
+            <tr>
+                <td>{{product.product_name}}</td>
+                <td>{{product.product_code}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.gst}}</td>
+                <td>{{product.food_product}}</td>
+                <!--<td>
+                    {% if product.picture %}
+                    <img src="{{product.picture.url}}" alt="Thumbnail" width="200px">
+                    {{product.picture}}
+                    {% else %}
+                            No Picture
+                    {% endif %}
+                </td>-->
+                <td>
+                    <a href="{% url 'product_update' product.id %}">
+                    <button class="btn btn-primary">Update</button>
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'product_delete' product.id %}">
+                    <button class="btn btn-danger">Delete</button>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<br />
+
+<a href="/inventory/products/add/">
+    <button class="btn btn-success float-end m-2">+ Add Products</button>
+</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

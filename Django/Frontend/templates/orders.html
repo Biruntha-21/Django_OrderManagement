@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="p-5 mb-5 bg-primary text-white">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">            
+                <div class="card bg-dark text-white" style="border-radius: 1rem;">
+<h1 class="text-center">Orders List Page</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Product</th>
+            <th>Order Number</th>
+            <th>Date</th>
+            <th>Quantity</th>
+            <th>Amount</th>
+            <th>GST Amount</th>
+            <th>Bill Amount</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in all_orders %}
+            <tr>
+                <td>{{order.customer_reference}}</td>
+                <td>{{order.product_reference}}</td>
+                <td>{{order.order_number}}</td>
+                <td>{{order.order_date}}</td>
+                <td>{{order.quantity}}</td>
+                <td>{{order.amount}}</td>
+                <td>{{order.gst_amount}}</td>
+                <td>{{order.bill_amount}}</td>
+                <td>
+                    <a href="{% url 'order_update' order.id %}">
+                    <button class="btn btn-primary">Update</button>
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'order_delete' order.id %}">
+                    <button class="btn btn-danger">Delete</button>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<br />
+
+<a href="/order/orders/add/">
+    <button class="btn btn-success float-end m-2">+ Add New Order</button>
+</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
